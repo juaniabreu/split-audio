@@ -1,16 +1,18 @@
 FROM python:3.10-slim
 
-# Instalar ffmpeg y otras dependencias
+# Instalar ffmpeg y Flask
 RUN apt-get update && \
     apt-get install -y ffmpeg && \
     pip install --no-cache-dir Flask
 
-# Copiar archivos
+# Establecer directorio de trabajo
 WORKDIR /app
+
+# Copiar todos los archivos del proyecto
 COPY . /app
 
-# Exponer puerto
+# Exponer el puerto usado por Flask (Render lo necesita)
 EXPOSE 10000
 
-# Iniciar servidor
+# Ejecutar la aplicación
 CMD ["python", "app.py"]
