@@ -22,7 +22,7 @@ def convert_video():
         with open(input_filename, 'wb') as f:
             f.write(base64.b64decode(video_b64))
 
-        # Ejecutar ffmpeg<
+        # Ejecutar ffmpeg
         cmd = [
             'ffmpeg',
             '-i', input_filename,
@@ -48,3 +48,8 @@ def convert_video():
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+# ✅ AGREGA ESTO AL FINAL
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
